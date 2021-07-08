@@ -1,0 +1,60 @@
+Suppose you are an Imagine Drogons fan, which of the albums listed is not one of thier albums?
+Night Visions
+Raise Your Spirit
+Evolve
+Origins
+B
+Which CIS class is the last class for Computer Information Systems?
+CIS345
+CIS315
+CIS440
+CIS450
+C
+Which TV show premiered on May 30, 2005?
+The Big Bang Theory
+Spongebob Squarepants
+Hell's Kitchen
+Masterchef
+C
+Who is the main love couple of the Vampire Diaries?
+Caroline & Stefan
+Damon & Elena
+Chris & Sara
+Josh & Catherine
+B
+Who is considered not a member of the Avengers?
+Superman
+Captain America
+Iron Man
+Scarlett Witch
+A
+Who is the villian of Harry Potter?
+Harry Potter
+Lord Voldemort
+Tom Weasley
+Herminione Granger
+B
+Which film is not considered an Avengers Film?
+Age of Ultron
+Civil War
+End Game
+Infinity War
+B
+Which software do we use in CIS345?
+Python
+Eclipse
+Pycharm
+Sublime
+C
+Which item is considered a fruit and color?
+Yellow
+Orange
+Blue
+Purple
+B
+What is the official language of Thailand?
+Arabic
+Chinese
+Thai
+Malaysian
+C
