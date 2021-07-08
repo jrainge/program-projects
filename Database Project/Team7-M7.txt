@@ -1,0 +1,1479 @@
+Creating of Tables
+/*Creating the Employees table*/
+create table EMPLOYEES
+(EID integer NOT NULL,
+SSN integer NOT NULL,
+FName varchar(20) NOT NULL,
+Lname varchar(20) NOT NULL,
+StreetAddress varchar(20) NOT NULL,
+city varchar(20) NOT NULL,
+state char(5) NOT NULL,
+zipcode varchar(10) NOT NULL,
+phone varchar(20) NOT NULL,
+email varchar(20) NOT NULL,
+AccountNum varchar(20) NOT NULL,
+payrate decimal(10,2) NOT NULL,
+startdate date NOT NULL,
+status varchar(5) NOT NULL,
+etype varchar(20) NOT NULL,
+Primary key(EID));
+
+
+insert into EMPLOYEES values (105, 6553, 'Stacie', 'Smith', 'Wildcat St', 'Tucson', 'AZ', '82001', '4800984321', 'StacieS@pforte.com', '7654123412', 12, '2012-02-15', 'Y', 'Sales');
+insert into EMPLOYEES values (110, 5234, 'Wolfgang', 'Mozart', 'Piano Rd', 'Phoenix', 'AZ', '85005', '5551231234', 'WolfgangM@pforte.com', '1212128989', 15, '2010-05-29', 'Y', 'Sales');
+insert into EMPLOYEES values (106, 5523, 'Billy', 'Bob', 'N Banjo St', 'Gilbert', 'AZ', '82015', '4809998279', 'BillyB@pforte.com', '9999999998', 15, '2014-08-20', 'Y', 'Sales');
+insert into EMPLOYEES values (111, 3624, 'Steph', 'Sal', '300 E St', 'Tempe', 'AZ', '85281', '4801112345', 'StephS@pforte.com', '7774327890', 11, '2012-04-04', 'Y', 'PTDelivery');
+insert into EMPLOYEES values (107, 1231, 'Steven', 'Speil', '60th Movie Rd', 'Tempe', 'AZ', '85281', '4804803345', 'StevenS@pforte.com', '7884327890', 10, '2016-11-11', 'Y', 'PTDelivery');
+insert into EMPLOYEES values (112, 7456, 'Shane', 'Hane', '300 E Lemon St', 'Tempe', 'AZ', '85281', '4801122345', 'ShaneH@pforte.com', '7114327890', 11, '2019-10-10', 'Y', 'PTDelivery');
+insert into EMPLOYEES values (113, 2342, 'Jesus', 'Gonzalez', '212 N Orange Blvd', 'Tempe', 'AZ', '85281', '4802122345', 'JesusG@pforte.com', '3030867890', 11, '2018-12-01', 'Y', 'PTDelivery');
+insert into EMPLOYEES values (114, 4232, 'Hannah', 'Zodi', '977 E Apache Blvd', 'Tempe', 'AZ', '85281', '4801009349', 'HannahZ@pforte.com', '5534327890', 11, '2019-01-15', 'Y', 'PTDelivery');
+
+
+
+Select * from Employees
+========================================================================
+
+/*Creating the  PTDellivery Employees Table*/
+
+create table PTDellivery
+(EID int not null,
+References# Varchar(30)NOT NULL , 
+EmergencyContact varchar(20)NOT NULL ,
+PRIMARY KEY(EID),
+FOREIGN KEY(EID) REFERENCES EMPLOYEES(EID));
+
+insert into  PTDellivery values (108,'S273643372' , '+1(480-652-9406'));
+insert into  PTDellivery values (111,'H763928736' , '+1(480-938-8438'));
+insert into  PTDellivery values (107,'F836649328' , '+1(480-952-5935'));
+insert into  PTDellivery values (112,'G836393743' , '+1(480-839-1939'));
+insert into  PTDellivery values (113,'S877364834' , '+1(480-935-4434'));
+insert into  PTDellivery values (114,'F867354303' , '+1(480-645-7533'));
+
+Select * from PTDellivery
+
+========================================================================
+
+/*Creating table for the Full Time Employess*/
+
+CREATE TABLE FullTime(
+EID int NOT NULL,
+YrsExp varchar(20) NOT NULL,
+F_Type varchar(20) NOT NULL,
+PRIMARY KEY(EID),
+FOREIGN KEY(EID) REFERENCES EMPLOYEES(EID));
+
+
+
+
+insert into FullTime values (104,'16 years', 'FullTime');
+insert into FullTime values (109,'4 years', 'FullTime');
+
+Select * from FullTime
+
+
+========================================================================
+
+/*Creating a  table for the Accountant Employees*/
+CREATE TABLE Accountants(
+EID int not null,
+PRIMARY KEY(EID),
+FOREIGN KEY(EID) REFERENCES EMPLOYEES(EID) ,
+DegreeObtained varchar(20) NOT NULL,
+GradDate date NOT NULL);
+
+
+insert into Accountants values (101,'Bachelor’s degree ', '2015-01-05');
+insert into Accountants values (102,'Master’’s degree ', '1967-01-05');
+
+Select * from Accountants
+
+========================================================================
+
+
+/*Creating a  table for the Sales Employees*/
+CREATE TABLE Sales(
+EID int not null,
+Commissionpercent  decimal(10,2) NOT NULL,
+PRIMARY KEY(EID),
+FOREIGN KEY(EID) REFERENCES EMPLOYEES(EID));
+
+insert into Sales values (103,15.50);
+insert into Sales values (105,11.20);
+insert into Sales values (110,8.75);
+insert into Sales values (106,10.66);
+
+Select * from Sales
+
+========================================================================
+
+
+/*Creating Table for days absent by an Employee*/
+create table DAYSABSENT
+(AbsentCode integer NOT NULL,
+DatesAbsent date NOT NULL,
+EID integer NOT NULL,
+Primary key(AbsentCode),
+Foreign key (EID) references EMPLOYEES (EID));
+
+
+insert into DAYSABSENT values (901,'2018-01-01',101);
+insert into DAYSABSENT values (902,'2018-01-02',101);
+insert into DAYSABSENT values (903,'2018-01-03',101);
+insert into DAYSABSENT values (904,'2018-01-01',102);
+insert into DAYSABSENT values (905,'2018-01-02',102);
+insert into DAYSABSENT values (906,'2017-12-10',103);
+insert into DAYSABSENT values (907,'2019-04-11',104);
+insert into DAYSABSENT values (908,'2018-11-21',105);
+insert into DAYSABSENT values (909,'2017-12-01',105);
+insert into DAYSABSENT values (910,'1997-12-29',106);
+insert into DAYSABSENT values (911,'1999-12-30',110);
+insert into DAYSABSENT values (912,'2017-07-11',110);
+insert into DAYSABSENT values (913,'2015-05-21',112);
+insert into DAYSABSENT values (914,'2018-07-16',112);
+insert into DAYSABSENT values (915,'2019-05-22',109);
+insert into DAYSABSENT values (916,'2013-09-12',109);
+
+
+========================================================================
+
+/*Create the pianos Table*/
+
+CREATE TABLE PIANO(
+P# integer not null,
+Manufacturer varchar(20) NOT NULL ,
+Ptype varchar(20) NOT NULL,
+Model varchar(20) NOT NULL,
+Price decimal (10,2) ,
+ShippingCharge decimal(10,2),
+Quantity integer not null,
+
+Primary key(P#));
+
+
+
+insert into PIANO values (54354, 'Bosendorfer','Grand', '290 Imperial', 4999.99, 500.00, 1);
+insert into PIANO values (77452, 'Steinway','Grand', 'Model S', 3490.00, 999.00, 6);
+insert into PIANO values (35224, 'Yamaha', 'Electronic','C7X', 999, 599.00, 5);
+insert into PIANO values (12554, 'Bluthner','Electronic', 'Model 1', 1999.99, 550.00, 3);
+insert into PIANO values (66541, 'Fazioli','Grand', 'F228', 1030.00, 599.00, 5);
+insert into PIANO values (41255, 'Yamaha','Electronic', 'S3X', 3499.99, 1700.00, 7);
+insert into PIANO values (22142, 'Steinway','Upright', 'Model D', 8000.00, 1100.00, 4);
+insert into PIANO values (41225, 'Fazioli','Upright', 'F308', 9999.99, 800.95, 5);
+insert into PIANO values (20625, 'Fazioli','Upright', 'F156', 1299.99 , 500.95, 8);
+insert into PIANO values (84451, 'Fazioli','Electronic', 'F183', 7999.99, 750.00, 4);
+insert into PIANO values (66145, 'Fazioli','Grand', 'F212', 949.90, 450.00, 2);
+insert into PIANO values (87452, 'Fazioli',  'Upright', 'F278', 4999.95,960.00, 5);
+insert into PIANO values (95412, 'Fazioli','Electronic', 'F358', 3499.99, 1027.00, 3);
+insert into PIANO values (61234, 'Steinway','Electronic', 'Model M', 1099.00, 500.00, 7);
+insert into PIANO values (23301, 'Steinway', 'Upright', 'Model O', 899.99, 299.00, 5);
+insert into PIANO values (78554, 'Steinway','Grand', 'Model A', 4999.99, 999.00, 6);
+insert into PIANO values (96652, 'Steinway','Upright', 'Model B', 2499.99, 899.00, 8);
+insert into PIANO values (62352, 'Bluthner','Electronic', 'Model 2', 4249.99, 799.00, 5);
+insert into PIANO values (14452, 'Bluthner', 'Uptright', 'Model 4', 2999.99, 700.00, 3);
+insert into PIANO values (85224, 'Bluthner','Electronic','Model 6', 2799.99, 500.00, 11);
+insert into PIANO values (62452, 'Bluthner', 'Grand', 'Model 10', 1499.99, 299.99, 2);
+insert into PIANO values (20148, 'Bluthner','Upright', 'Model 11', 5500.00, 899.00, 4);
+insert into PIANO values (80542, 'Bosendorfer','Upright','185', 6799.99, 500.99, 7);
+insert into PIANO values (69850, 'Bosendorfer','Electronic', '155',500.99, 299.00, 4);
+insert into PIANO values (62334, 'Bosendorfer','Upright', '225', 1699.99, 449.00, 6);
+insert into PIANO values (74552, 'Bosendorfer','Electronic', '120CL', 2999.99, 369.99, 3);
+insert into PIANO values (46623, 'Yamaha','Grand', 'U1', 500.99, 199.00, 12);
+insert into PIANO values (25506, 'Yamaha','Grand', 'S7X', 4500.00, 650.00, 3);
+insert into PIANO values (84520, 'Yamaha','Grand','C3X', 5999.99, 799.00, 2);
+insert into PIANO values (75501, 'Yamaha', 'Grand','GB1K', 1999.99,399.00, 1);
+
+
+========================================================================
+
+/*Create the Rental pianos Table*/
+
+CREATE TABLE Rental
+( P# int not null,
+ RentalPrice  decimal (10,2) NOT NULL,
+Location varchar (20) NOT NULL,
+Primary key(P#),
+Foreign key(P#) REFERENCES PIANO(P#));
+
+
+Insert into RENTAL values(78554, 21.56, 'Westchester');
+Insert into RENTAL values(96652, 23.34, 'London');
+Insert into RENTAL values(62352, 35.23, 'Hong-Kong');
+Insert into RENTAL values(14452, 27.34, 'Hong-Kong');
+Insert into RENTAL values(85224, 25.84, 'Paris');
+Insert into RENTAL values(62452, 26.56, 'Phoenix' );
+Insert into RENTAL values(20148, 23.45, 'Memphis');
+Insert into RENTAL values(80542, 20.56, 'Chicago');
+Insert into RENTAL values(69850, 25.12, 'London');
+Insert into RENTAL values(62334, 22.54, 'Memphis');
+Insert into RENTAL values(74552, 23.45, 'Memphis');
+Insert into RENTAL values(46623, 30.02, 'Memphis');
+Insert into RENTAL values(25506, 21.45,'Atlanta');
+Insert into RENTAL values(84520, 21.32, 'Atlanta');
+Insert into RENTAL values(75501, 27.45, 'Chicago');
+========================================================================
+
+/*Create the Used pianos Table*/
+
+CREATE TABLE USED
+(P# int not null,PreviousOwner varchar (20), 
+PossessionDate date NOT NULL,
+PrevOwnerPhone char (20),
+Primary key(P#),
+Foreign key(P#) REFERENCES PIANO(P#));
+
+
+
+
+
+
+INSERT INTO USED VALUES(96652,'Terry Willis', '8-23-2019','345-5665');
+INSERT INTO USED VALUES(62352,'Sam Hopkins', '5-21-2019','345-5675');
+INSERT INTO USED VALUES(14452,'Sara Hopkins', '7-21-2019','243-5695');
+INSERT INTO USED VALUES(85224,'Larry Thomas', '5-24-2019','235-5175');
+INSERT INTO USED VALUES(62452,'Ken Jenkins', '6-23-2019','985-5625');
+INSERT INTO USED VALUES(20148,'Sam Hopkins', '5-21-2019','345-5675');
+INSERT INTO USED VALUES(80342,'Sara Jefferson', '5-13-2019','234-5665');
+INSERT INTO USED VALUES(80542,'Steven Donnings', '5-23-2019','565-5675');
+INSERT INTO USED VALUES(69850,'Steve Evens', '7-25-2019','335-5375');
+INSERT INTO USED VALUES(62334,'John Errands', '5-23-2019','341-5673');
+INSERT INTO USED VALUES(74552,'Jake Softland', '5-21-2019','344-5675');
+INSERT INTO USED VALUES(46623,'Jerry Shores', '5-24-2019','334-5645');
+INSERT INTO USED VALUES(25506,'Terry Hopkins', '4-21-2019','356-5665');
+INSERT INTO USED VALUES(84520,'Johnny Mennings', '5-23-2019','345-5875');
+INSERT INTO USED VALUES(75501,'Sam Hopkins', '5-21-2019','345-5675');
+
+
+========================================================================
+
+/*Create the CUSTOMER Table*/
+
+create table CUSTOMER(
+C# int NOT NULL,
+FName varchar(10) NOT NULL,
+LName varchar(10) NOT NULL,
+StreetAddress varchar(30) NOT NULL,
+City varchar(20) NOT NULL,
+State char(2) NOT NULL,
+ZipCode varchar(9) NOT NULL,
+Phone varchar(10) NOT NULL,
+
+Primary Key(C#));
+
+insert into CUSTOMER values (00001, 'Nancy', 'Ray', '235 Lowndes Hill Park Road', 'Bakersfield', 'CA', '93301', '6615179835');
+insert into CUSTOMER values (00002, 'Mark', 'Lesko', '4618 Sunny Glen Lane', 'Cleveland', 'OH', '44114', '2138031706');
+insert into CUSTOMER values (00003, 'Ruth', 'Livermore', '3250 Mill Street', 'Anderson', 'SC', '29621', '8642226241');
+insert into CUSTOMER values (00004, 'Charles', 'Robinson', '4817 Johnstown Road', 'Schaumburg', 'IL', '60173', '8474350606');
+insert into CUSTOMER values (00005, 'Frances', 'Wendling', '1871 Willis Avenue', 'Port Orange', 'FL', '32019', '3865629550');
+insert into CUSTOMER values (00006, 'Joseph', 'Mortenson', '1844 Tennessee Avenue', 'Pontiac', 'MI', '48342', '2483220430');
+insert into CUSTOMER values (00007, 'Rachelle', 'Watson', '3864 Union Street', 'Seattle', 'WA', '98115', '2067291025');
+insert into CUSTOMER values (00008, 'David', 'Elledge', '123 Ruckman Road', 'Oklahoma City', 'OK', '73107', '4058020529');
+insert into CUSTOMER values (00009, 'Luis', 'Clayton', '2310 Mahlon Street', 'Freehold', 'NJ', '07728', '7329829782');
+insert into CUSTOMER values (00010, 'Rudolph', 'Walser', '3374 Leo Street', 'Denver', 'CO', '80202', '3433238854');
+insert into CUSTOMER values (00011, 'Marie', 'Bailey', '1277 Glen Street', 'Eddyville', 'KY', '42038', '8843432005');
+insert into CUSTOMER values (00012, 'Edward', 'Sperling', '756 East Avenue', 'Phoenix', 'AZ', '85016', '6235849943');
+insert into CUSTOMER values (00013, 'Karen', 'Morris', '4766 Adamsville Road', 'Mcallen', 'TX', '78501', '8942204838');
+insert into CUSTOMER values (00014, 'Robert', 'Borba', '2116 Sumner Street', 'Gardena', 'CA', '90247', '8842993020');
+insert into CUSTOMER values (00015, 'Kevin', 'Gutshall', '3499 Tecumsah Lane', 'Cedar Falls', 'IA', '50613', '4882992030');
+insert into CUSTOMER values (00016, 'Dennis', 'Collins', '1617 Boggess Street', 'Dallas', 'TX', '75207', '8794452011');
+insert into CUSTOMER values (00017, 'Christopher', 'Sawicki', '2202 Snowbird Lane', 'Fremont', 'NE', '68025', '4032294483');
+insert into CUSTOMER values (00018, 'Bernice', 'Cooper', '440 Hall Valley Drive', 'Culloden', 'WV', '25510', '4583909099');
+insert into CUSTOMER values (00019, 'Edward', 'Lott', '66 May Street', 'Lexington', 'KY', '40507', '8935503484');
+insert into CUSTOMER values (00020, 'Daniel', 'Coppola', '1176 Thrash Trail', 'Longview', 'TX', '75601', '4852209948');
+insert into CUSTOMER values (00021, 'Willie', 'Roark', '2351 Harter Street', 'Dayton', 'OH', '45402', '8496450201');
+insert into CUSTOMER values (00022, 'Tracy', 'Hilliard', '4196 Hinkle Deegan Lake Road', 'Binghamton', 'NY', '13901', '9342284052');
+insert into CUSTOMER values (00023, 'Lizzette', 'Gutierrez', '857 Mill Street', 'Spartanburg', 'SC', '29302', '7652005455');
+insert into CUSTOMER values (00024, 'George', 'Blume', '4090 Petunia Way', 'Birmingham', 'AL', '35222', '2345543992');
+insert into CUSTOMER values (00025, 'Jeff', 'Young', '2795 Red Dog Road', 'Charlotte', 'NC', '28208', '4924439899');
+insert into CUSTOMER values (00026, 'Linda', 'Wakefield', '2044 Luke Lane', 'Oklahoma City', 'OK', '73102', '5809932003');
+insert into CUSTOMER values (00027, 'Michael', 'Anderson', '2390 Morningview Lane', 'Fertile', 'IA', '50434', '8824892993');
+insert into CUSTOMER values (00028, 'Ben', 'Scates', '2073 Willison Street', 'Anoka', 'MN', '55303', '4517431193');
+insert into CUSTOMER values (00029, 'Sharon', 'Brock', '502 McVaney Road', 'Asheville', 'NC', '28801', '3381183072');
+insert into CUSTOMER values (00030, 'Carl', 'Krawczyk', '4274 Peaceful Lane', 'Warrensville', 'OH', '44128', '3239957018');
+
+
+
+========================================================================
+
+/*Create the Shipping Table*/
+
+create table SHIPPING(
+S# int NOT NULL,
+State char(2) NOT NULL,
+Distance varchar(4) NOT NULL,
+
+Primary Key(S#));
+
+insert into SHIPPING values (45675, 'ID', '152')
+insert into SHIPPING values (12542, 'KY', '432')
+insert into SHIPPING values (43246, 'MI', '840')
+insert into SHIPPING values (23495, 'AZ', '38')
+insert into SHIPPING values (90432, 'IN', '233')
+insert into SHIPPING values (23403, 'NY', '1438')
+insert into SHIPPING values (84993, 'ND', '658')
+insert into SHIPPING values (77395, 'WA', '765')
+insert into SHIPPING values (34232, 'VT', '883')
+insert into SHIPPING values (22341, 'WY', '1878')
+insert into SHIPPING values (88432, 'TX', '302')
+insert into SHIPPING values (98483, 'RI', '234')
+insert into SHIPPING values (77389, 'UT', '893')
+insert into SHIPPING values (89304, 'OR', '1320')
+insert into SHIPPING values (23194, 'NJ', '542')
+insert into SHIPPING values (35231, 'VA', '629')
+insert into SHIPPING values (77894, 'CA', '1143')
+insert into SHIPPING values (78942, 'AK', '1459')
+insert into SHIPPING values (58483, 'LA', '647')
+insert into SHIPPING values (67849, 'MS', '934')
+insert into SHIPPING values (78432, 'ME', '504')
+insert into SHIPPING values (32148, 'NV', '365')
+insert into SHIPPING values (89493, 'MT', '892')
+insert into SHIPPING values (39921, 'TN', '237')
+insert into SHIPPING values (20348, 'PA', '748')
+insert into SHIPPING values (92348, 'DE', '289')
+insert into SHIPPING values (34973, 'CT', '902')
+insert into SHIPPING values (12398, 'UT', '183')
+insert into SHIPPING values (98431, 'WV', '302')
+insert into SHIPPING values (29013, 'MN', '299')
+
+
+
+========================================================================
+
+
+/*  CREATE, INSERT, AND DISPLAY THE CONTENTS OF THE TRANSACTION TABLE */
+select * from PIANO
+
+create table TRANSACTIONS (
+   Trans# Int not null,
+   S# 	int,
+   EID	int,   
+   C#	int,
+   P#   int,
+   Dates varchar(15) NOT null,   
+   T_Type    varchar(20)  Not null,
+   Primary Key (Trans#),
+   Foreign Key (S#) REFERENCES [dbo].[SHIPPING] (S#),
+   Foreign Key (EID) REFERENCES [dbo].[EMPLOYEES] (EID),
+   Foreign Key (C#) REFERENCES [dbo].[CUSTOMER] (C#),
+   Foreign Key (P#) REFERENCES [dbo].[PIANO](P#));
+
+insert into TRANSACTIONS values (01, '45675', '105','1',54354,'2015-13-17', 'SALESTRANS');
+insert into TRANSACTIONS values (02, '12542', '109','2',54354,'2015-13-17','SALESTRANS');
+insert into TRANSACTIONS values (03, '43246', '109','3',77452,'2015-12-17','SALESTRANS');
+insert into TRANSACTIONS values (04, '23495', '105','4',35224,'2015-2-17','SALESTRANS');
+insert into TRANSACTIONS values (05, '90432', '106','5',12554,'2015-15-17','SALESTRANS');
+insert into TRANSACTIONS values (06, '23403', '109','6',54354,'2015-1-17','SALESTRANS');
+insert into TRANSACTIONS values (07, '84993', '106','7',54354,'2015-1-17','SALESTRANS');
+insert into TRANSACTIONS values (08, '77395', '106','8',77452,'2015-19-17','SALESTRANS');
+insert into TRANSACTIONS values (09, '34232', '109','9',35224,'2015-12-17','SALESTRANS');
+insert into TRANSACTIONS values (10, '22341', '106','10',12554,'2015-20-17','SALESTRANS');
+insert into TRANSACTIONS values (11, '88432', '106','11',54354,'2015-12-17','SALESTRANS');
+insert into TRANSACTIONS values (12, '98483', '109','12',54354,'2015-12-17','SALESTRANS');
+insert into TRANSACTIONS values (13, '77389', '110','13',77452,'2015-22-17','SALESTRANS');
+insert into TRANSACTIONS values (14, '89304', '105','14',35224,'2015-12-17','SALESTRANS');
+insert into TRANSACTIONS values (15, '23194', '110','15',12554,'2015-16-17','SALESTRANS');
+insert into TRANSACTIONS values (16, '12542', '109','2',96652,'2015-12-17','RENTALTRANS');
+insert into TRANSACTIONS values (17, '77389', '110','14',62352,'2015-2-5','RENTALTRANS');
+insert into TRANSACTIONS values (18, '43246', '109','3',20148,'2015-11-17','RENTALTRANS');
+insert into TRANSACTIONS values (19, '23495', '109','4',80542,'2015-4-17','RENTALTRANS');
+insert into TRANSACTIONS values (20, '90432', '106','5',62334,'2015-9-17','RENTALTRANS');
+insert into TRANSACTIONS values (21, '23403', '109','6',46623,'2015-12-17','RENTALTRANS');
+insert into TRANSACTIONS values (22, '84993', '106','7',84520,'2015-2-5','RENTALTRANS');
+insert into TRANSACTIONS values (23, '77395', '106','8',25506,'2015-12-16','RENTALTRANS');
+insert into TRANSACTIONS values (24, '34232', '109','9',23301,'2015-4-17','RENTALTRANS');
+insert into TRANSACTIONS values (25, '22341', '106','10',96652,'2015-9-17','RENTALTRANS');
+insert into TRANSACTIONS values (26, '88432', '109','11',62352,'2015-12-17','RENTALTRANS');
+insert into TRANSACTIONS values (27, '98483', '109','12',14452,'2015-2-5','RENTALTRANS');
+insert into TRANSACTIONS values (28, '77389', '110','13',85224,'2015-11-17','RENTALTRANS');
+insert into TRANSACTIONS values (29, '89304', '110','14',46623,'2015-4-17','RENTALTRANS');
+insert into TRANSACTIONS values (30, '23194', '110','15',80542,'2015-9-17','RENTALTRANS');
+
+select  * from TRANSACTIONS
+select  * from RENTALTRANS
+select  * from SALESTRANS
+Select * from SHIPPING
+Drop table TRANSACTIONS
+
+========================================================================
+
+/*  CREATE, INSERT, AND DISPLAY THE CONTENTS OF THE RENTALTRANNS TABLE */
+
+create table RENTALTRANS (
+   Trans#	Int,
+   RentalStart	varchar(15)	NOT null,
+   RentalEnd	Varchar(15)     Not null,
+   deliveryDate    Date         Not null,
+   PickupDate      Date         Not null,
+   Event         Varchar(20)     Not null,
+   Primary Key (Trans#),
+   Foreign Key (Trans#) REFERENCES [dbo].[TRANSACTIONS](Trans#));
+   
+
+insert into RENTALTRANS  values (16 ,'2015-12-17','2015-12-25','2015-12-17','2015-12-17','Party');
+insert into RENTALTRANS values  (17,'2015-2-5','2015-3-17','2015-2-4','2015-3-18', 'Party');
+insert into RENTALTRANS values  (18,'2015-11-17','2015-12-17','2015-12-16','2015-12-18','School Play');
+insert into RENTALTRANS values  (19,'2015-4-17','205-4-25','2015-12-16','2015-12-26', 'Music Concert');
+insert into RENTALTRANS values  (20,'2015-9-17','2015-10-17','2015-9-16','2015-12-18', 'Piano Concert');
+insert into RENTALTRANS  values (21,'2015-12-17','2015-12-25','2015-12-17','2015-12-17','Party');
+insert into RENTALTRANS values (22,'2015-2-5','2015-3-17','2015-2-4','2015-3-18', 'Party');
+insert into RENTALTRANS values (23,'2015-11-17','2015-12-17','2015-12-16','2015-12-18','School Play');
+insert into RENTALTRANS values (24, '2015-4-17','2015-4-25','2015-12-16','2015-12-26', 'Music Concert');
+insert into RENTALTRANS values (25,'2015-9-17','2015-10-17','2015-9-16','2015-12-18', 'Piano Concert');
+insert into RENTALTRANS  values (26,'2015-12-17','2015-12-25','2015-12-17','2015-12-17','Party');
+insert into RENTALTRANS values ( 27,'2015-2-5','2015-3-17','2015-2-4','2015-3-18', 'Party');
+insert into RENTALTRANS values (28,'2015-11-17','2015-12-17','2015-12-16','2015-12-18','School Play');
+insert into RENTALTRANS values (29, '2015-4-17','2015-4-25','2015-12-16','2015-12-26', 'Music Concert');
+insert into RENTALTRANS values (30,'2015-9-17','2015-10-17','2015-9-16','2015-12-18', 'Piano Concert');
+
+Select* 
+from RENTALTRANS
+
+Drop table RENTALTRANS
+
+========================================================================
+  /*  CREATE, INSERT, AND DISPLAY THE CONTENTS OF THE SALESTRANS TABLE */
+
+create table SALESTRANS(
+   Trans#	Int       NOT NULL,
+   Quantity	int       NOT null,
+   Condition	varchar(15)	NOT null,
+   Price	Decimal (12,2) 	Not null,
+   Primary Key (Trans#),
+   Foreign Key (Trans#) REFERENCES [dbo].[TRANSACTIONS] (Trans#));
+
+insert into SALESTRANS values (01, 5, 'Good', 2055.52);
+insert into SALESTRANS values (02, 3, 'Fair',993);
+insert into SALESTRANS values (03, 4, 'Excellent',1066);
+insert into SALESTRANS values (04, 1, 'Excellent',326);
+insert into SALESTRANS values (05, 3, 'Very Good',1000);
+insert into SALESTRANS values (06, 4, 'Very Good',1010);
+insert into SALESTRANS values (07, 1, 'Very Good',326);
+insert into SALESTRANS values (08, 3, 'Very Good',1000);
+insert into SALESTRANS values (09, 4, 'Good', 1025.52);
+insert into SALESTRANS values (10, 6, 'Good', 1055.52);
+insert into SALESTRANS values (11, 2, 'Good', 1055.52);
+insert into SALESTRANS values (12, 3, 'Good', 999.52);
+insert into SALESTRANS values (13, 5, 'Good', 1055.52);
+insert into SALESTRANS values (14, 5, 'Good', 1055.52);
+insert into SALESTRANS values (15, 4, 'Good', 1025.52);
+
+
+
+Select * from [dbo].[SALESTRANS]
+
+Drop Table SALESTRANS
+Select * from [dbo].[PIANO]
+
+========================================================================
+
+Basic Query
+
+/*1. Insert into CUSTOMERS*/
+INSERT INTO  CUSTOMER values (45, 'Thomas', 'Ray', '235 Sunny Park Road', 'Bakersfield', 'CA', '93451', '661517453');
+INSERT INTO CUSTOMER values (55, 'Sam', 'Lesko', '4618 Sunny Line Park', 'Cleveland', 'OH', '45194', '21345326');
+
+========================================================================
+/*2 Insert Into SalesTransactions*/
+insert into SALESTRANS values (45, 4, 'Good', 2015.52);
+insert into SALESTRANS values (34, 2, 'Moderate',945);
+
+DELETE FROM SALESTRANS WHERE Price  =2015.52;
+
+========================================================================
+/*Insert Into Pianos*/
+2. Insert into PIANO values (54954, 'Borndorfer','Grand', '291 Sperasl', 3499.99, 545.00, 11);
+Insert into PIANO values (78452, 'Sweidway','Grand', 'Model M', 3492.00, 799.00, 20);
+========================================================================
+/*3 DELETE ALL PIANOS WITH MODEL ‘GRAND’*/
+3. DELETE FROM PIANO WHERE Model ='Grand’;
+
+========================================================================
+
+/* 4. For each rental, display piano make/model and customer name/phone. */
+
+select manufacturer "Make", Model, fname "First Name", lname "Last Name", Phone
+	from piano p join transactions t
+		on p.p# = t.p#
+	right join rentaltrans rt
+		on t.trans# = rt.trans#
+	join customer c
+		on t.c# = c.c#
+	group by manufacturer, model, fname, lname, phone;
+========================================================================
+/* 5. Which piano sells better; highest sales? This should be determined by both the piano number and the total sales amount. */
+
+select p.p# "Piano Number", sum(st.quantity * st.price) "Total Sales Amount"
+	from piano p join transactions t
+		on p.p# = t.p#
+	join salestrans st
+		on t.trans# = st.trans#
+	group by p.p#, manufacturer, model
+order by 2 desc;
+========================================================================
+/* 6. It should be possible to delete a customer and all their transactions with a single DELETE statement. */
+
+alter table transactions
+	add constraint fk_customer
+	foreign key (c#)
+	references customer (c#)
+on delete cascade;
+
+/* DO NOT RUN THIS QUERY. IT WILL DELETE CUSTOMER NUMBER 3 FROM THE DATABASE */
+
+/*delete*/ from customer
+	where c# = 3;
+
+select *
+	from customer;
+
+select *
+	from transactions;
+========================================================================
+/*7- Testing for out of stock pianos */
+
+/*Testing for Pianos without untracked stock*/
+Select *
+	from PIANO
+		where quantity = ''
+
+
+========================================================================
+/*8- Testing for rental piano that ends in 2019  */
+
+Select trans#, RentalStart, RentalEnd
+  from RENTALTRANS
+    where RentalEnd like'2019%'
+
+
+========================================================================
+
+
+
+/*Testing for employees without ID numbers*/
+select eid,ssn,lname 
+	from EMPLOYEES
+	where eid = ''
+
+
+
+========================================================================
+/*Testing for Pianos without a price tag*/
+Select * 
+	from SALESTRANS
+		Where price = 0
+
+
+ /*Referential integrity testing*/
+
+ /*SELECTING EMPLOYEES, WITH THEIR EMPLOYEE ID AND FIRST NAME AND 
+ THE TRANSACTIONS THAT THEY HANDLED*/
+
+ select E.EID,E.fname,T.trans#
+	 from EMPLOYEES E inner join TRANSACTIONS T
+		on E.EID= T.EID;
+========================================================================
+ /*Employees that Were absent, show their id, Dates they were absent and their first name*/
+ select E.EID,D.DatesAbsent,FNAME
+	 FROM DAYSABSENT D, EMPLOYEES E
+		WHERE E.EID = D.EID;
+========================================================================
+/*SHOW THE CUSTOMERS AND THE TRANSACTION NUMBER OF THE PRODUCTS THEY BOUGHT, INCLUDE FNAME,LNAME,PHONE AND TRANS# */
+
+ select FNAME,LNAME, PHONE, TRANS#
+	FROM CUSTOMER C inner join TRANSACTIONS T
+		 on C.C#=T.C#;
+
+
+
+
+
+
+
+
+
+
+
+Advanced Querys
+GROUP BY/HAVING
+1. /* salesperson who has poor performance, less than 5 total sales */
+select fname "Poor performing salesperson" , count(t.EID) "sales made"
+	from transactions t
+	join employees e on 
+	t.eid = e.eid
+	group by fname
+		having count(t.eid) < 5;
+
+========================================================================
+2. /* Count of deliveries to each state with more than just 1 shipment */
+select state "State with 2 Deliveries or more", count(state) as "Number of Shipments"
+	from piano p
+	join TRANSACTIONS t
+	 on p.p# = t.p#
+	join shipping s
+	 on s.s# = t.s#
+	  group by state
+		having count(state) > 1
+order by count(state) desc;
+
+========================================================================
+3. /* number of days absent for employees in Arizona and above 1 day*/
+select e.EID as "ID",  count(datesabsent) as "number of absents"
+	from employees e
+	join daysabsent d
+	 on e.eid = d.eid
+	 where state = 'AZ'
+		group by e.eid
+			having count(datesabsent) > 1
+order by count(datesabsent) desc;
+
+
+
+
+
+
+
+
+**Fully Nested 
+
+/*1-Which Employees handled which customers (5,10,4 AND 8), select Employee Id and name*/
+
+Select EID,FNAME,LNAME
+	FROM EMPLOYEES 
+		WHERE EID IN
+		(SELECT EID 
+			FROM TRANSACTIONS
+				WHERE C# IN 
+				(SELECT C#	
+					FROM CUSTOMER
+						WHERE C# IN ('5','10','4','8')));
+
+
+
+========================================================================
+
+/*2-SHOW THE SHIPPING NUM. STATE AND DISTANCE FOR ALL USED PIANOS*/
+
+Select S#,STATE, DISTANCE
+	FROM SHIPPING 
+		WHERE S# IN
+		(SELECT S# 
+			FROM TRANSACTIONS
+				WHERE P# IN
+				(SELECT P# 
+					FROM USED));
+
+========================================================================
+
+/*3-Show all customers who rent a piano. list their ID, names, and states  */
+Select C#,fname, lname,State
+	FROM CUSTOMER 
+		WHERE C# IN
+		(SELECT C# 
+			FROM TRANSACTIONS
+				WHERE Trans# IN
+				(SELECT Trans# 
+					FROM RENTALTRANS))
+
+
+========================================================================
+
+/*4 Find all rental transactions that were rented for a specific event. List
+the ID, pick up date, and the event as Party  */
+
+select trans#,PickupDate , Event
+         from RENTALTRANS
+    		where Event in
+    		  (Select Event
+       			  from RENTALTRANS
+          				   where Event = 'party');
+
+
+========================================================================
+
+/* Find all Piano where the price is over 5000, Show piano ID, Piano type, price*/
+
+Select P#, Ptype as 'Piano Type',Price
+        from PIANO
+  		 where Price in
+      		(Select Price
+        			 from PIANO
+          			   where Price> 5000);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+**Views
+/*Which Employees handled which customers (5,10,4 AND 8), select Employee Id and name*/
+Create View SalesandCustomers as
+Select EID,FNAME,LNAME
+	FROM EMPLOYEES 
+		WHERE EID IN
+		(SELECT EID 
+			FROM TRANSACTIONS
+				WHERE C# IN 
+				(SELECT C#	
+					FROM CUSTOMER
+						WHERE C# IN ('5','10','4','8')));
+
+SELECT * FROM SalesandCustomers;
+			
+========================================================================
+
+/*SHOW THE SHIPPING NUM. STATE AND DISTANCE FOR ALL USED PIANOS*/
+Create view ShippingDetails as 
+Select S#,STATE, DISTANCE
+	FROM SHIPPING 
+		WHERE S# IN
+		(SELECT S# 
+			FROM TRANSACTIONS
+				WHERE P# IN
+				(SELECT P# 
+					FROM USED));
+SELECT* FROM ShippingDetails;
+
+========================================================================
+/* Show the number of days absent for employees in Arizona and above 1 day*/
+Create View EmloyeesDaysAbsent as
+select e.EID as "ID",  count(datesabsent) as "numberofabsents"
+       from employees e
+	join daysabsent d
+		 on e.eid = d.eid
+			group by e.eid;
+SELECT *
+       FROM  EmloyeesDaysAbsent
+order by numberofabsents desc;
+
+DROP VIEW EmloyeesDaysAbsent
+
+
+========================================================================
+
+
+
+/*. Create a record for a new rental transaction, adding data to all corresponding tables (transactions, rent, ship charge,*/
+Begin Transaction
+
+Update SHIPPING
+	set S# =85224
+	WHERE S# = 89493;
+
+	insert into TRANSACTIONS values (31, '77389', '110','13',85224,'2015-11-7','RENTALTRANS');
+	insert into RENTALTRANS values  (31,'2015-11-17','2015-11-30','2015-11-18','2015-12-1','School Play');
+Rollback;
+Commit;
+
+	Select * from RENTALTRANS
+	Where Trans#=31
+	select * from TRANSACTIONS
+	Where Trans#=31
+	select * from SHIPPING
+	Where S# LIKE '8%';
+
+========================================================================
+
+	/*
+ 2. When adding a new sales employee, also add the record to the ‘child’ 
+ tables to reflect all of the employee’s information. 
+*/
+
+Begin Transaction;
+
+	insert into EMPLOYEES values (115, 6443, 'Pascal', 'Mensah', 'Wildcat St', 'Tucson', 'AZ', '82001', '4800933321',
+	 'pascmen@gmail.com', '7659993412', 60, '2012-02-15', 'Y', 'Sales');
+
+	Insert into FullTime Values (115, '7 YEARS', 'FullTime');
+	Insert into Sales values (115,30)
+
+
+Rollback;
+Commit;
+
+select * from EMPLOYEES
+	Where eid = 115;
+Select * from Sales
+	Where eid = 115;
+Select * from FullTime
+	Where eid = 115;
+========================================================================
+
+/*Adding A Column to PIANO "QOH"*/
+
+Alter table PIANO ADD  QOH NVARCHAR (20);
+Select * from PIANO
+
+========================================================================
+/*1. (10) TRIGGER: Add a trigger to your sales table (or equivalent) so
+ that whenever a new sale of a piano occurs (i.e. a new INSERT), 
+ automatically deduct the quantity from the quantity on hand of that
+  piano and replace that value in the piano product table. 
+  (you will need to add QOH to the piano table if you don’t already have it)
+*/
+Create trigger qoh
+on Salestrans
+after insert
+as 
+begin
+	insert into PIANO (QUANTITY)
+	Values(
+	(select PIANO.Quantity - COUNT(Transactions.p#)
+	FROM SALESTRANS,TRANSACTIONS,PIANO, inserted
+	WHERE SALESTRANS.Trans#=TRANSACTIONS.Trans#
+	AND TRANSACTIONS.P#=PIANO.P#
+	Group by SALESTRANS.QUANTITY,PIANO.Quantity ))
+End
+insert into TRANSACTIONS values (33, '45675', '103','1',22142,'2015-13-17','SALESTRANS');
+insert into SALESTRANS values (33, 3, 'Very Good',1000);
+
+
+
+
+
+
+/*procedure*/
+create procedure EmpCustLog
+as
+select e.fname "employee First Name", e.lname "Employee Last Name", 
+dates "Transaction date", c.fname "Customer name", T_type "transaction", price
+	from employees e
+	 join transactions t
+	on e.eid = t.eid
+	 join piano p
+	on p.p# = t.p#
+	 join customer c
+	on c.c# = t.c#;
+exec EmpCustLog;
+
+
+create index ptypeidx on piano(Ptype);
+create index manuidx on piano(manufacturer);
+
+/* sick days with employee information */
+Create view sickdays as
+Select e.eid, fname, lname, payrate, etype, datesabsent, absentcode
+	From employees e
+	 Join daysabsent d
+	On e.eid =d.eid
+========================================================================
+
+/*Number of anbsents mmade by the employee.*/
+Create view NumberofSalesabsent as
+Select E.EID, FNAME, LNAME, COUNT(D.DatesAbsent) AS DAYSABSENT
+	FROM EMPLOYEES E INNER JOIN DAYSABSENT D
+		ON E.EID=D.EID
+	GROUP BY  E.EID, FNAME, LNAME;
+
+/*Number of transactions processed by an employee*/
+Create view Numberoftransaction as 
+SELECT E.EID, FNAME, LNAME, COUNT(T.C#) AS NUMEROFTRANSACTIONSMADE
+		FROM EMPLOYEES E 
+			INNER JOIN TRANSACTIONS T
+			ON T.EID=E.EID
+		GROUP BY E.EID, FNAME,LNAME,T.EID; 
+
+/*POOR PERFORMING EMPLOYEES*/
+Create view POORPERFORMINGEMPLOYEES as
+select ns.eid, ns.fname, ns.lname,ns.DAYSABSENT,  NUMEROFTRANSACTIONSMADE
+	from NumberofSalesabsent ns 
+		join Numberoftransaction nt
+		on ns.EID =nt.EID;
+
+Select * from NumberofSalesabsent;
+Select * from  Numberoftransaction; 
+Select * from POORPERFORMINGEMPLOYEES
+
+
+========================================================================
+
+/*Time each employee has been in the business*/
+Create view workingyears as
+  Select Eid,fname,lname,Datediff(year,startdate,getdate()) As ‘Time spent with the company’
+     From Employees
+
+Justin Rainge
+
+Display the degree for each the employees
+
+CREATE VIEW degreeearned as 
+
+SELECT ACCOUNTANTS.EID,FName, LName,  DegreeObtained, GradYear
+FROM EMPLOYEES, ACCOUNTANTS
+WHERE EMPLOYEES.EID = ACCOUNTANTS.EID;
+Display the commission percent of each employee
+
+
+CREATE VIEW commissionpercent AS
+
+SELECT SALES.EID,FName, LName, CommissionPercent
+FROM EMPLOYEES, SALES
+WHERE EMPLOYEES.EID = SALES.EID;
+
+========================================================================
+
+1. create and insert statements
+
+/* Create a table CUSTOMER data without the identifier field.*/
+
+create table CUSTOMER(
+
+FName varchar(10) NOT NULL,
+LName varchar(10) NOT NULL,
+StreetAddress varchar(30) NOT NULL,
+City varchar(20) NOT NULL,
+State char(2) NOT NULL,
+ZipCode varchar(9) NOT NULL,
+Phone varchar(10) NOT NULL,)
+
+
+insert into CUSTOMER values ( 'Nancy', 'Ray', '235 Lowndes Hill Park Road', 'Bakersfield', 'CA', '93301', '6615179835');
+insert into CUSTOMER values ( 'Mark', 'Lesko', '4618 Sunny Glen Lane', 'Cleveland', 'OH', '44114', '2138031706');
+insert into CUSTOMER values ( 'Ruth', 'Livermore', '3250 Mill Street', 'Anderson', 'SC', '29621', '8642226241');
+insert into CUSTOMER values ( 'Charles', 'Robinson', '4817 Johnstown Road', 'Schaumburg', 'IL', '60173', '8474350606');
+insert into CUSTOMER values ( 'Frances', 'Wendling', '1871 Willis Avenue', 'Port Orange', 'FL', '32019', '3865629550');
+insert into CUSTOMER values ( 'Joseph', 'Mortenson', '1844 Tennessee Avenue', 'Pontiac', 'MI', '48342', '2483220430');
+
+/* Populate the CUSTOMER table with duplicate data rows for testing */
+insert into CUSTOMER
+select * from CUSTOMER;
+insert into CUSTOMER
+select * from CUSTOMER;
+insert into CUSTOMER
+select * from CUSTOMER;
+insert into CUSTOMER
+select * from CUSTOMER;
+insert into CUSTOMER
+select * from CUSTOMER;
+insert into CUSTOMER
+select * from CUSTOMER;
+insert into CUSTOMER
+select * from CUSTOMER;
+insert into CUSTOMER
+select * from CUSTOMER;
+insert into CUSTOMER
+select * from CUSTOMER;
+insert into CUSTOMER
+select * from CUSTOMER;
+insert into CUSTOMER
+select * from CUSTOMER;
+insert into CUSTOMER
+select * from CUSTOMER;
+insert into CUSTOMER
+select * from CUSTOMER;
+
+========================================================================
+
+/* Create a CUSTOMERS table to populate from CUSTOMER and add a unique identifier field  */
+create table CUSTOMERS(
+C# int IDENTITY (1,1) NOT NULL PRIMARY KEY,
+FName varchar(10) NOT NULL,
+LName varchar(10) NOT NULL,
+StreetAddress varchar(30) NOT NULL,
+City varchar(20) NOT NULL,
+State char(2) NOT NULL,
+ZipCode varchar(9) NOT NULL,
+Phone varchar(10) NOT NULL,)
+
+/* insert data into CUSTOMERS  from CUSTOMER with an identifier field that will 
+    auto populate unique IDs */
+
+insert into CUSTOMERS( FName,LName,StreetAddress,City,State,ZipCode,Phone) 
+   select * from CUSTOMERs;
+
+
+
+   Drop Table Customer
+
+========================================================================
+
+
+
+
+
+
+1. create and insert statements
+
+/* Create a table PIANO data without the identifier field.*/
+
+CREATE TABLE PIANO (
+
+Manufacturer varchar(20) NOT NULL ,
+Ptype varchar(20) NOT NULL,
+Model varchar(20) NOT NULL,
+Price decimal (10,2) ,
+ShippingCharge decimal(10,2),
+Quantity integer not null,)
+
+
+
+insert into PIANO values ( 'Bosendorfer','Grand', '290 Imperial', 4999.99, 500.00, 1);
+insert into PIANO values ( 'Steinway','Grand', 'Model S', 3490.00, 999.00, 6);
+insert into PIANO values ( 'Yamaha', 'Electronic','C7X', 999, 599.00, 5);
+insert into PIANO values ( 'Bluthner','Electronic', 'Model 1', 1999.99, 550.00, 3);
+insert into PIANO values ( 'Fazioli','Grand', 'F228', 1030.00, 599.00, 5);
+insert into PIANO values ( 'Yamaha','Electronic', 'S3X', 3499.99, 1700.00, 7);
+insert into PIANO values ( 'Steinway','Upright', 'Model D', 8000.00, 1100.00, 4);
+insert into PIANO values ( 'Fazioli','Upright', 'F308', 9999.99, 800.95, 5);
+insert into PIANO values ( 'Fazioli','Upright', 'F156', 1299.99 , 500.95, 8);
+insert into PIANO values ( 'Fazioli','Electronic', 'F183', 7999.99, 750.00, 4);
+insert into PIANO values ( 'Fazioli','Grand', 'F212', 949.90, 450.00, 2);
+insert into PIANO values ( 'Fazioli',  'Upright', 'F278', 4999.95,960.00, 5);
+
+
+
+
+/* Populate the PIANO table with duplicate data rows for testing */
+insert into PIANO
+select * from PIANO;
+insert into PIANO
+select * from PIANO;
+insert into PIANO
+select * from PIANO;
+insert into PIANO
+select * from PIANO;
+insert into PIANO
+select * from PIANO;
+insert into PIANO
+select * from PIANO;
+insert into PIANO
+select * from PIANO;
+insert into PIANO
+select * from PIANO;
+insert into PIANO
+select * from PIANO;
+insert into PIANO
+select * from PIANO;
+insert into PIANO
+select * from PIANO;
+insert into PIANO
+select * from PIANO;
+insert into PIANO
+select * from PIANO;
+
+========================================================================
+/* Create a PIANOS table to populate from PIANOS and add a unique identifier field  */
+CREATE TABLE PIANOS (
+P# int IDENTITY (1,1) NOT NULL PRIMARY KEY,
+Manufacturer varchar(20) NOT NULL ,
+Ptype varchar(20) NOT NULL,
+Model varchar(20) NOT NULL,
+Price decimal (10,2) ,
+ShippingCharge decimal(10,2),
+Quantity integer not null,)
+
+/* insert data into PIANOS  from PIANO with an identifier field that will 
+    auto populate unique IDs */
+
+insert into PIANOS(Manufacturer,Ptype,Model,Price,ShippingCharge,Quantity) 
+   select * from PIANO;
+
+Drop TABLE PIANO
+
+
+
+========================================================================
+
+
+
+
+
+1. create and insert statements
+
+/* Create a table Staffs data without the identifier field.*/
+	create table Staff
+   (
+    SSN integer NOT NULL,
+FName varchar(20) NOT NULL,
+Lname varchar(20) NOT NULL,
+StreetAddress varchar(20) NOT NULL,
+city varchar(20) NOT NULL,
+state char(5) NOT NULL,
+zipcode varchar(10) NOT NULL,
+phone varchar(20) NOT NULL,
+email varchar(20) NOT NULL,
+AccountNum varchar(20) NOT NULL,
+payrate decimal(10,2) NOT NULL,
+startdate date NOT NULL,
+status varchar(5) NOT NULL,
+etype varchar(20) NOt null
+);
+
+insert into Staff values ( 6553, 'Stacie', 'Smith', 'Wildcat St', 'Tucson', 'AZ', '82001', '4800984321', 'StacieS@pforte.com', '7654123412', 12, '2012-02-15', 'Y', 'Sales');
+insert into Staff values ( 5234, 'Wolfgang', 'Mozart', 'Piano Rd', 'Phoenix', 'AZ', '85005', '5551231234', 'WolfgangM@pforte.com', '1212128989', 15, '2010-05-29', 'Y', 'Sales');
+insert into Staff values ( 5523, 'Billy', 'Bob', 'N Banjo St', 'Gilbert', 'AZ', '82015', '4809998279', 'BillyB@pforte.com', '9999999998', 15, '2014-08-20', 'Y', 'Sales');
+insert into Staff values ( 3624, 'Steph', 'Sal', '300 E St', 'Tempe', 'AZ', '85281', '4801112345', 'StephS@pforte.com', '7774327890', 11, '2012-04-04', 'Y', 'PTDelivery');
+insert into Staff values ( 1231, 'Steven', 'Speil', '60th Movie Rd', 'Tempe', 'AZ', '85281', '4804803345', 'StevenS@pforte.com', '7884327890', 10, '2016-11-11', 'Y', 'PTDelivery');
+insert into Staff values ( 7456, 'Shane', 'Hane', '300 E Lemon St', 'Tempe', 'AZ', '85281', '4801122345', 'ShaneH@pforte.com', '7114327890', 11, '2019-10-10', 'Y', 'PTDelivery');
+
+
+/* Populate the Staffs table with duplicate data rows for testing */
+
+insert into Staff
+  select * from Staff;
+ insert into Staff
+  select * from Staff;
+insert into Staff
+  select * from Staff;	
+  insert into Staff
+  select * from Staff;
+ insert into Staff
+  select * from Staff;
+insert into Staff
+  select * from Staff;
+  insert into Staff
+  select * from Staff;
+ insert into Staff
+  select * from Staff;
+insert into Staff
+  select * from Staff;	
+
+ insert into Staff
+  select * from Staff;
+insert into Staff
+  select * from Staff;
+insert into Staff
+  select * from Staff;
+insert into Staff
+  select * from Staff;
+
+========================================================================
+/* Create a Staffs table to populate from Staff and add a unique identifier field  */
+
+create table Staffs
+   (EID int IDENTITY (101,1) NOT NULL PRIMARY KEY,
+    SSN integer NOT NULL,
+FName varchar(20) NOT NULL,
+Lname varchar(20) NOT NULL,
+StreetAddress varchar(20) NOT NULL,
+city varchar(20) NOT NULL,
+state char(5) NOT NULL,
+zipcode varchar(10) NOT NULL,
+phone varchar(20) NOT NULL,
+email varchar(20) NOT NULL,
+AccountNum varchar(20) NOT NULL,
+payrate decimal(10,2) NOT NULL,
+startdate date NOT NULL,
+status varchar(5) NOT NULL,
+etype varchar(20) NOt null
+);
+
+
+/* insert data into Staffs  from Staff with an identifier field that will 
+    auto populate unique IDs */
+
+insert into Staffs( SSN,FName,Lname,StreetAddress,city,state,zipcode,phone,email,AccountNum,payrate,startdate,status,etype) 
+   select * from Staff;
+
+
+   select *
+ from Staffs
+   where EID = 140;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1. create and insert statements
+
+/* Create a table PURCHASE data without the identifier field.*/
+
+create table PURCHASES (
+   EID	int ,   
+   C#	int,
+   P#   int, 
+   T_Type    varchar(20)  Not null,)
+ 
+
+ 
+insert into PURCHASES values (  '103','1',54354,'SALESTRANS');
+insert into PURCHASES values (  '109','2',54354,'SALESTRANS');
+insert into PURCHASES values (  '103','3',77452,'SALESTRANS');
+insert into PURCHASES values (  '109','4',35224,'SALESTRANS');
+insert into PURCHASES values (  '103','5',12554,'SALESTRANS');
+insert into PURCHASES values (  '109','6',54354,'SALESTRANS');
+
+
+
+/* Populate the PURCHASEtable with duplicate data rows for testing */
+insert into  PURCHASES
+select * from  PURCHASES;
+insert into  PURCHASES
+select * from  PURCHASES;
+insert into  PURCHASES
+select * from  PURCHASES;
+insert into  PURCHASES
+select * from  PURCHASES;
+insert into  PURCHASES
+select * from  PURCHASES;
+insert into  PURCHASES
+select * from  PURCHASES;
+insert into  PURCHASES
+select * from  PURCHASES;
+insert into  PURCHASES
+select * from  PURCHASES;
+insert into  PURCHASES
+select * from  PURCHASES;
+insert into  PURCHASES
+select * from  PURCHASES;
+insert into  PURCHASES
+select * from  PURCHASES;
+insert into  PURCHASES
+select * from  PURCHASES;
+insert into  PURCHASES
+select * from  PURCHASES;
+
+
+
+
+
+
+/* Create a PURCHASE table to populate from PURCHASES and add a unique identifier field  */
+
+create table PURCHASE (
+Trans# int IDENTITY (1,1) NOT NULL PRIMARY KEY,
+   EID	int ,   
+   C#	int,
+   P#   int, 
+   T_Type    varchar(20)  Not null)
+
+
+/* insert data into PURCHASE  from PURCHASES with an identifier field that will 
+    auto populate unique IDs */
+
+   insert into PURCHASE(EID,C#,P#,T_Type) 
+   select * from PURCHASES;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1. queries
+
+/*Output the Employee WHO IN RESPONSIBLE FOR SERVICING PURCHASES IN THE ORGANISATION,INCLUDE 
+THE Transaction number,the employee id, the piano number,the customer they were responsible for(their name and number) 
+and find out the number of transactions they were responsible for*/
+
+SET STATISTICS TIME ON
+	Select p.eid,Ps.p#,Ps.Manufacturer, s.LName,s.fname, Trans#,C.C#,C.LNAME,C.FNAME,sum (p.trans#)
+			 from staffs s
+			join purchase p
+			on p.eid=s.eid
+			join PIANOS Ps
+			ON  Ps.P#=p.P#
+			JOIN CUSTOMERS c
+			on c.C#=p.c#
+		group by p.eid,Ps.p#,Ps.Manufacturer, s.LName,s.fname, Trans#,C.C#,C.LNAME,C.FNAME
+	order by  s.LName
+
+====================================================================
+
+/*Output the Employee WHO IN RESPONSIBLE FOR SERVICING PURCHASES IN THE ORGANISATION,INCLUDE EMPLOYEE ID AND THEIR NAME*/
+Select EID,LNAME,FNAME
+	FROM Staffs
+	WHERE EID in(
+		SELECT EID
+			FROM PURCHASES
+			WHERE C# in(
+				SELECT C#
+					FROM CUSTOMERS
+					WHERE C# in(
+						SELECT C#
+							FROM PURCHASE
+								Where P# IN( 
+								SELECT P# 
+									FROM PIANOS))))
+
+
+
+
+
+
+Piano Forte 14 Case Questions/Integrity Testing
+
+
+/*1 What geographical areas do our customers come from?*/
+
+select state, zipcode
+	from customer;
+
+
+/*2 Number of pianos sold (by type-new or used) in the past month.*/
+
+select count(u.p#) as "Count of used"
+	from piano p
+	join used u
+	 on p.p# = u.p#;
+
+select count(n.p#) as "Count of New"
+	from piano p
+	join rental n
+	 on p.p# = n.p#;
+
+
+
+/*3 Total piano sales for the past quarter */
+select count(p#) as "total sales last quarter"
+	from transactions;
+	
+
+
+/*4 Most expensive Piano we sell*/
+select max(price) "highest priced piano"
+	from piano;
+
+
+/* 5. Average rental charge for all pianos and each type of piano */
+select avg(price) as "average rental price"
+	from piano
+	where p# in 
+	 (select p#
+	  from transactions
+	   where trans# in
+	    (select trans# 
+		 from rentaltrans));
+
+
+/*6. Which piano do we have an overabundance of stock? */
+select model, quantity
+	from piano
+	where quantity > 10;
+
+
+
+
+/* 7. Which pianos have never sold? */ (fix once salestrans added)
+select model as "Models never sold"
+	from piano p
+	where p# in
+	 (select p#
+	  from transactions
+	  where trans# not in
+	   (select trans#
+	    from salestrans));
+
+
+
+/* 8. Which pianos have never rented? */
+select model as "Models never rented"
+	from piano p
+	where p# in
+	 (select p#
+	  from transactions
+	  where trans# not in
+	   (select trans#
+	    from rentaltrans));
+
+/* 9. Which pianos have been returned and why? */
+select P# as "Pianos returned"
+	from piano
+	where p# in
+	 (select p#
+	  from transactions
+	   where trans# in
+	    (select trans# 
+		 from rentaltrans
+		  where 'rentalend' > 'pickupdate'));
+
+
+
+/* 10. Salesperson who has not sold piano in the last month */
+
+select fname "Poor performing salesperson" , count(t.EID) "sales made"
+	from transactions t
+	join employees e on 
+	t.eid = e.eid
+	group by fname
+		having count(t.eid) < 5;
+
+select fname "First Name", t.eid, dates, count(*)
+	from employees e join transactions t
+		on e.eid = t.eid
+	where dates between '2015-10-01' and '2015-11-01'
+		group by fname, t.eid, dates
+			having count(t.eid) = 0;
+
+/* 11. Who is our outstanding salesperson for the past 3 months? */
+
+select fname "Outstanding Salesperson", count(*) "Number of Transactions (past 3 months)"
+	from employees e join transactions t
+		on e.eid = t.eid
+	where datediff(month, dates, '2015-12-31') < 3
+	where dates between '2015-10-01' and '2015-12-31'
+		group by fname, t.eid
+order by 2 desc;
+
+/* 12. List all pianos sold by salesperson. Include the date. */
+
+select p.p# "Piano Number", Manufacturer, Model, dates "Date"
+	from piano p join transactions t
+		on p.p# = t.p#
+	join employees e
+		on t.eid = e.eid
+	where e.eid = 109
+order by 1, 4;
+
+/* 13. List all former owners of our used pianos and the date of possession. */
+
+select p# "Piano Number", previousowner "Former Owner", possessiondate "Date of Possession"
+	from used
+order by 2;
+
+/* 14. Who are our repeat customers? */
+
+select t.c# "Customer Number", fname "First Name", lname "Last Name", count(t.c#) "Number of Transactions"
+	from transactions t join customer c
+		on t.c# = c.c#
+	group by t.c#, fname, lname
+		having count(t.c#) > 1
+order by 4 desc, 1;
+

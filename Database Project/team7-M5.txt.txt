@@ -1,0 +1,155 @@
+/*. Create a record for a new rental transaction, adding data to all corresponding tables (transactions, rent, ship charge,*/
+Begin Transaction
+
+Update SHIPPING
+	set S# =85224
+	WHERE S# = 89493;
+
+	insert into TRANSACTIONS values (31, '77389', '110','13',85224,'2015-11-7','RENTALTRANS');
+	insert into RENTALTRANS values  (31,'2015-11-17','2015-11-30','2015-11-18','2015-12-1','School Play');
+Rollback;
+Commit;
+
+	Select * from RENTALTRANS
+	Where Trans#=31
+	select * from TRANSACTIONS
+	Where Trans#=31
+	select * from SHIPPING
+	Where S# LIKE '8%';
+
+
+
+	/*
+ 2. When adding a new sales employee, also add the record to the ‘child’ 
+ tables to reflect all of the employee’s information. 
+*/
+
+Begin Transaction;
+
+	insert into EMPLOYEES values (115, 6443, 'Pascal', 'Mensah', 'Wildcat St', 'Tucson', 'AZ', '82001', '4800933321',
+	 'pascmen@gmail.com', '7659993412', 60, '2012-02-15', 'Y', 'Sales');
+
+	Insert into FullTime Values (115, '7 YEARS', 'FullTime');
+	Insert into Sales values (115,30)
+
+
+Rollback;
+Commit;
+
+select * from EMPLOYEES
+	Where eid = 115;
+Select * from Sales
+	Where eid = 115;
+Select * from FullTime
+	Where eid = 115;
+
+
+/*Adding A Column to PIANO "QOH"*/
+
+Alter table PIANO ADD  QOH NVARCHAR (20);
+Select * from PIANO
+
+
+/*1. (10) TRIGGER: Add a trigger to your sales table (or equivalent) so
+ that whenever a new sale of a piano occurs (i.e. a new INSERT), 
+ automatically deduct the quantity from the quantity on hand of that
+  piano and replace that value in the piano product table. 
+  (you will need to add QOH to the piano table if you don’t already have it)
+*/
+Create trigger qoh
+on Salestrans
+after insert
+as 
+begin
+	insert into PIANO (QUANTITY)
+	Values(
+	(select PIANO.Quantity - COUNT(Transactions.p#)
+	FROM SALESTRANS,TRANSACTIONS,PIANO, inserted
+	WHERE SALESTRANS.Trans#=TRANSACTIONS.Trans#
+	AND TRANSACTIONS.P#=PIANO.P#
+	Group by SALESTRANS.QUANTITY,PIANO.Quantity ))
+End
+insert into TRANSACTIONS values (33, '45675', '103','1',22142,'2015-13-17','SALESTRANS');
+insert into SALESTRANS values (33, 3, 'Very Good',1000);
+
+
+
+
+
+
+/*procedure*/
+create procedure EmpCustLog
+as
+select e.fname "employee First Name", e.lname "Employee Last Name", 
+dates "Transaction date", c.fname "Customer name", T_type "transaction", price
+	from employees e
+	 join transactions t
+	on e.eid = t.eid
+	 join piano p
+	on p.p# = t.p#
+	 join customer c
+	on c.c# = t.c#;
+exec EmpCustLog;
+
+
+create index ptypeidx on piano(Ptype);
+create index manuidx on piano(manufacturer);
+
+/* sick days with employee information */
+Create view sickdays as
+Select e.eid, fname, lname, payrate, etype, datesabsent, absentcode
+	From employees e
+	 Join daysabsent d
+	On e.eid =d.eid
+
+/*Number of anbsents mmade by the employee.*/
+Create view NumberofSalesabsent as
+Select E.EID, FNAME, LNAME, COUNT(D.DatesAbsent) AS DAYSABSENT
+	FROM EMPLOYEES E INNER JOIN DAYSABSENT D
+		ON E.EID=D.EID
+	GROUP BY  E.EID, FNAME, LNAME;
+
+/*Number of transactions processed by an employee*/
+Create view Numberoftransaction as 
+SELECT E.EID, FNAME, LNAME, COUNT(T.C#) AS NUMEROFTRANSACTIONSMADE
+		FROM EMPLOYEES E 
+			INNER JOIN TRANSACTIONS T
+			ON T.EID=E.EID
+		GROUP BY E.EID, FNAME,LNAME,T.EID; 
+
+/*POOR PERFORMING EMPLOYEES*/
+Create view POORPERFORMINGEMPLOYEES as
+select ns.eid, ns.fname, ns.lname,ns.DAYSABSENT,  NUMEROFTRANSACTIONSMADE
+	from NumberofSalesabsent ns 
+		join Numberoftransaction nt
+		on ns.EID =nt.EID;
+
+Select * from NumberofSalesabsent;
+Select * from  Numberoftransaction; 
+Select * from POORPERFORMINGEMPLOYEES
+
+
+
+
+/*Time each employee has been in the business*/
+Create view workingyears as
+  Select Eid,fname,lname,Datediff(year,startdate,getdate()) As ‘Time spent with the company’
+     From Employees
+
+Justin Rainge
+
+Display the degree for each the employees
+
+CREATE VIEW degreeearned as 
+
+SELECT ACCOUNTANTS.EID,FName, LName,  DegreeObtained, GradYear
+FROM EMPLOYEES, ACCOUNTANTS
+WHERE EMPLOYEES.EID = ACCOUNTANTS.EID;
+Display the commission percent of each employee
+
+
+CREATE VIEW commissionpercent AS
+
+SELECT SALES.EID,FName, LName, CommissionPercent
+FROM EMPLOYEES, SALES
+WHERE EMPLOYEES.EID = SALES.EID;

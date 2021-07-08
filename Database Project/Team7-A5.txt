@@ -1,0 +1,410 @@
+1. create and insert statements
+
+/* Create a table CUSTOMER data without the identifier field.*/
+
+create table CUSTOMER(
+
+FName varchar(10) NOT NULL,
+LName varchar(10) NOT NULL,
+StreetAddress varchar(30) NOT NULL,
+City varchar(20) NOT NULL,
+State char(2) NOT NULL,
+ZipCode varchar(9) NOT NULL,
+Phone varchar(10) NOT NULL,)
+
+
+insert into CUSTOMER values ( 'Nancy', 'Ray', '235 Lowndes Hill Park Road', 'Bakersfield', 'CA', '93301', '6615179835');
+insert into CUSTOMER values ( 'Mark', 'Lesko', '4618 Sunny Glen Lane', 'Cleveland', 'OH', '44114', '2138031706');
+insert into CUSTOMER values ( 'Ruth', 'Livermore', '3250 Mill Street', 'Anderson', 'SC', '29621', '8642226241');
+insert into CUSTOMER values ( 'Charles', 'Robinson', '4817 Johnstown Road', 'Schaumburg', 'IL', '60173', '8474350606');
+insert into CUSTOMER values ( 'Frances', 'Wendling', '1871 Willis Avenue', 'Port Orange', 'FL', '32019', '3865629550');
+insert into CUSTOMER values ( 'Joseph', 'Mortenson', '1844 Tennessee Avenue', 'Pontiac', 'MI', '48342', '2483220430');
+
+/* Populate the CUSTOMER table with duplicate data rows for testing */
+insert into CUSTOMER
+select * from CUSTOMER;
+insert into CUSTOMER
+select * from CUSTOMER;
+insert into CUSTOMER
+select * from CUSTOMER;
+insert into CUSTOMER
+select * from CUSTOMER;
+insert into CUSTOMER
+select * from CUSTOMER;
+insert into CUSTOMER
+select * from CUSTOMER;
+insert into CUSTOMER
+select * from CUSTOMER;
+insert into CUSTOMER
+select * from CUSTOMER;
+insert into CUSTOMER
+select * from CUSTOMER;
+insert into CUSTOMER
+select * from CUSTOMER;
+insert into CUSTOMER
+select * from CUSTOMER;
+insert into CUSTOMER
+select * from CUSTOMER;
+insert into CUSTOMER
+select * from CUSTOMER;
+
+
+/* Create a CUSTOMERS table to populate from CUSTOMER and add a unique identifier field  */
+create table CUSTOMERS(
+C# int IDENTITY (1,1) NOT NULL PRIMARY KEY,
+FName varchar(10) NOT NULL,
+LName varchar(10) NOT NULL,
+StreetAddress varchar(30) NOT NULL,
+City varchar(20) NOT NULL,
+State char(2) NOT NULL,
+ZipCode varchar(9) NOT NULL,
+Phone varchar(10) NOT NULL,)
+
+/* insert data into CUSTOMERS  from CUSTOMER with an identifier field that will 
+    auto populate unique IDs */
+
+insert into CUSTOMERS( FName,LName,StreetAddress,City,State,ZipCode,Phone) 
+   select * from CUSTOMERs;
+
+
+
+   Drop Table Customer
+
+
+
+
+
+
+
+
+1. create and insert statements
+
+/* Create a table PIANO data without the identifier field.*/
+
+CREATE TABLE PIANO (
+
+Manufacturer varchar(20) NOT NULL ,
+Ptype varchar(20) NOT NULL,
+Model varchar(20) NOT NULL,
+Price decimal (10,2) ,
+ShippingCharge decimal(10,2),
+Quantity integer not null,)
+
+
+
+insert into PIANO values ( 'Bosendorfer','Grand', '290 Imperial', 4999.99, 500.00, 1);
+insert into PIANO values ( 'Steinway','Grand', 'Model S', 3490.00, 999.00, 6);
+insert into PIANO values ( 'Yamaha', 'Electronic','C7X', 999, 599.00, 5);
+insert into PIANO values ( 'Bluthner','Electronic', 'Model 1', 1999.99, 550.00, 3);
+insert into PIANO values ( 'Fazioli','Grand', 'F228', 1030.00, 599.00, 5);
+insert into PIANO values ( 'Yamaha','Electronic', 'S3X', 3499.99, 1700.00, 7);
+insert into PIANO values ( 'Steinway','Upright', 'Model D', 8000.00, 1100.00, 4);
+insert into PIANO values ( 'Fazioli','Upright', 'F308', 9999.99, 800.95, 5);
+insert into PIANO values ( 'Fazioli','Upright', 'F156', 1299.99 , 500.95, 8);
+insert into PIANO values ( 'Fazioli','Electronic', 'F183', 7999.99, 750.00, 4);
+insert into PIANO values ( 'Fazioli','Grand', 'F212', 949.90, 450.00, 2);
+insert into PIANO values ( 'Fazioli',  'Upright', 'F278', 4999.95,960.00, 5);
+
+
+
+
+/* Populate the PIANO table with duplicate data rows for testing */
+insert into PIANO
+select * from PIANO;
+insert into PIANO
+select * from PIANO;
+insert into PIANO
+select * from PIANO;
+insert into PIANO
+select * from PIANO;
+insert into PIANO
+select * from PIANO;
+insert into PIANO
+select * from PIANO;
+insert into PIANO
+select * from PIANO;
+insert into PIANO
+select * from PIANO;
+insert into PIANO
+select * from PIANO;
+insert into PIANO
+select * from PIANO;
+insert into PIANO
+select * from PIANO;
+insert into PIANO
+select * from PIANO;
+insert into PIANO
+select * from PIANO;
+
+
+/* Create a PIANOS table to populate from PIANOS and add a unique identifier field  */
+CREATE TABLE PIANOS (
+P# int IDENTITY (1,1) NOT NULL PRIMARY KEY,
+Manufacturer varchar(20) NOT NULL ,
+Ptype varchar(20) NOT NULL,
+Model varchar(20) NOT NULL,
+Price decimal (10,2) ,
+ShippingCharge decimal(10,2),
+Quantity integer not null,)
+
+/* insert data into PIANOS  from PIANO with an identifier field that will 
+    auto populate unique IDs */
+
+insert into PIANOS(Manufacturer,Ptype,Model,Price,ShippingCharge,Quantity) 
+   select * from PIANO;
+
+Drop TABLE PIANO
+
+
+
+
+
+
+
+
+
+1. create and insert statements
+
+/* Create a table Staffs data without the identifier field.*/
+	create table Staff
+   (
+    SSN integer NOT NULL,
+FName varchar(20) NOT NULL,
+Lname varchar(20) NOT NULL,
+StreetAddress varchar(20) NOT NULL,
+city varchar(20) NOT NULL,
+state char(5) NOT NULL,
+zipcode varchar(10) NOT NULL,
+phone varchar(20) NOT NULL,
+email varchar(20) NOT NULL,
+AccountNum varchar(20) NOT NULL,
+payrate decimal(10,2) NOT NULL,
+startdate date NOT NULL,
+status varchar(5) NOT NULL,
+etype varchar(20) NOt null
+);
+
+insert into Staff values ( 6553, 'Stacie', 'Smith', 'Wildcat St', 'Tucson', 'AZ', '82001', '4800984321', 'StacieS@pforte.com', '7654123412', 12, '2012-02-15', 'Y', 'Sales');
+insert into Staff values ( 5234, 'Wolfgang', 'Mozart', 'Piano Rd', 'Phoenix', 'AZ', '85005', '5551231234', 'WolfgangM@pforte.com', '1212128989', 15, '2010-05-29', 'Y', 'Sales');
+insert into Staff values ( 5523, 'Billy', 'Bob', 'N Banjo St', 'Gilbert', 'AZ', '82015', '4809998279', 'BillyB@pforte.com', '9999999998', 15, '2014-08-20', 'Y', 'Sales');
+insert into Staff values ( 3624, 'Steph', 'Sal', '300 E St', 'Tempe', 'AZ', '85281', '4801112345', 'StephS@pforte.com', '7774327890', 11, '2012-04-04', 'Y', 'PTDelivery');
+insert into Staff values ( 1231, 'Steven', 'Speil', '60th Movie Rd', 'Tempe', 'AZ', '85281', '4804803345', 'StevenS@pforte.com', '7884327890', 10, '2016-11-11', 'Y', 'PTDelivery');
+insert into Staff values ( 7456, 'Shane', 'Hane', '300 E Lemon St', 'Tempe', 'AZ', '85281', '4801122345', 'ShaneH@pforte.com', '7114327890', 11, '2019-10-10', 'Y', 'PTDelivery');
+
+
+/* Populate the Staffs table with duplicate data rows for testing */
+
+insert into Staff
+  select * from Staff;
+ insert into Staff
+  select * from Staff;
+insert into Staff
+  select * from Staff;	
+  insert into Staff
+  select * from Staff;
+ insert into Staff
+  select * from Staff;
+insert into Staff
+  select * from Staff;
+  insert into Staff
+  select * from Staff;
+ insert into Staff
+  select * from Staff;
+insert into Staff
+  select * from Staff;	
+
+ insert into Staff
+  select * from Staff;
+insert into Staff
+  select * from Staff;
+insert into Staff
+  select * from Staff;
+insert into Staff
+  select * from Staff;
+
+
+/* Create a Staffs table to populate from Staff and add a unique identifier field  */
+
+create table Staffs
+   (EID int IDENTITY (101,1) NOT NULL PRIMARY KEY,
+    SSN integer NOT NULL,
+FName varchar(20) NOT NULL,
+Lname varchar(20) NOT NULL,
+StreetAddress varchar(20) NOT NULL,
+city varchar(20) NOT NULL,
+state char(5) NOT NULL,
+zipcode varchar(10) NOT NULL,
+phone varchar(20) NOT NULL,
+email varchar(20) NOT NULL,
+AccountNum varchar(20) NOT NULL,
+payrate decimal(10,2) NOT NULL,
+startdate date NOT NULL,
+status varchar(5) NOT NULL,
+etype varchar(20) NOt null
+);
+
+
+/* insert data into Staffs  from Staff with an identifier field that will 
+    auto populate unique IDs */
+
+insert into Staffs( SSN,FName,Lname,StreetAddress,city,state,zipcode,phone,email,AccountNum,payrate,startdate,status,etype) 
+   select * from Staff;
+
+
+   select *
+ from Staffs
+   where EID = 140;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1. create and insert statements
+
+/* Create a table PURCHASE data without the identifier field.*/
+
+create table PURCHASES (
+   EID	int ,   
+   C#	int,
+   P#   int, 
+   T_Type    varchar(20)  Not null,)
+ 
+
+ 
+insert into PURCHASES values (  '103','1',54354,'SALESTRANS');
+insert into PURCHASES values (  '109','2',54354,'SALESTRANS');
+insert into PURCHASES values (  '103','3',77452,'SALESTRANS');
+insert into PURCHASES values (  '109','4',35224,'SALESTRANS');
+insert into PURCHASES values (  '103','5',12554,'SALESTRANS');
+insert into PURCHASES values (  '109','6',54354,'SALESTRANS');
+
+
+
+/* Populate the PURCHASEtable with duplicate data rows for testing */
+insert into  PURCHASES
+select * from  PURCHASES;
+insert into  PURCHASES
+select * from  PURCHASES;
+insert into  PURCHASES
+select * from  PURCHASES;
+insert into  PURCHASES
+select * from  PURCHASES;
+insert into  PURCHASES
+select * from  PURCHASES;
+insert into  PURCHASES
+select * from  PURCHASES;
+insert into  PURCHASES
+select * from  PURCHASES;
+insert into  PURCHASES
+select * from  PURCHASES;
+insert into  PURCHASES
+select * from  PURCHASES;
+insert into  PURCHASES
+select * from  PURCHASES;
+insert into  PURCHASES
+select * from  PURCHASES;
+insert into  PURCHASES
+select * from  PURCHASES;
+insert into  PURCHASES
+select * from  PURCHASES;
+
+
+
+
+
+
+/* Create a PURCHASE table to populate from PURCHASES and add a unique identifier field  */
+
+create table PURCHASE (
+Trans# int IDENTITY (1,1) NOT NULL PRIMARY KEY,
+   EID	int ,   
+   C#	int,
+   P#   int, 
+   T_Type    varchar(20)  Not null)
+
+
+/* insert data into PURCHASE  from PURCHASES with an identifier field that will 
+    auto populate unique IDs */
+
+   insert into PURCHASE(EID,C#,P#,T_Type) 
+   select * from PURCHASES;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1. queries
+
+/*Output the Employee WHO IN RESPONSIBLE FOR SERVICING PURCHASES IN THE ORGANISATION,INCLUDE 
+THE Transaction number,the employee id, the piano number,the customer they were responsible for(their name and number) 
+and find out the number of transactions they were responsible for*/
+
+SET STATISTICS TIME ON
+	Select p.eid,Ps.p#,Ps.Manufacturer, s.LName,s.fname, Trans#,C.C#,C.LNAME,C.FNAME,sum (p.trans#)
+			 from staffs s
+			join purchase p
+			on p.eid=s.eid
+			join PIANOS Ps
+			ON  Ps.P#=p.P#
+			JOIN CUSTOMERS c
+			on c.C#=p.c#
+		group by p.eid,Ps.p#,Ps.Manufacturer, s.LName,s.fname, Trans#,C.C#,C.LNAME,C.FNAME
+	order by  s.LName
+
+====================================================================
+
+/*Output the Employee WHO IN RESPONSIBLE FOR SERVICING PURCHASES IN THE ORGANISATION,INCLUDE EMPLOYEE ID AND THEIR NAME*/
+Select EID,LNAME,FNAME
+	FROM Staffs
+	WHERE EID in(
+		SELECT EID
+			FROM PURCHASES
+			WHERE C# in(
+				SELECT C#
+					FROM CUSTOMERS
+					WHERE C# in(
+						SELECT C#
+							FROM PURCHASE
+								Where P# IN( 
+								SELECT P# 
+									FROM PIANOS))))
+
