@@ -1,0 +1,25 @@
+body {
+      background-color: peachpuff;
+}
+.mt-0 {
+    margin-top: 230px !important;
+}
+.btn-primary {
+    background: red;
+    border-color: red;
+    
+
+}
+
+.createAccount {
+    text-align: center;
+}
+
+.form-text, .fs-6, .btn-primary {
+    text-align: center;
+}
+
+.fs-6 {
+    font-size: 30px;
+}
+© 2021 GitHub, Inc.

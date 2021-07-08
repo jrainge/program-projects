@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <title>Upload Your Images</title>
+</head>
+<link rel="stylesheet" href="UploadCSS.css">
+<body>
+    <h1>Upload Your Images Here!</h1>
+    <form class="form1" method="get" name="form" action="destination.php">
+		<br>
+		<img id="imgPreview" src="" alt="Preview" name='photo'>
+		<br>
+		<input type="file" id="myFileInput">
+        <br>
+        <input type="button" onclick="location.reload();" value="Reload" >
+        <input type="submit" value="Submit">
+		<!--<p>Do you want to upload a photo?<input type ="checkbox" id ="checked" class="check"></p>-->
+		<br>
+		<a href="AnalyseImage.html">Click here to analyse the photo</a>	
+	</form>
+
+    <script>
+        document.querySelector("#myFileInput").addEventListener("change", function() {
+            const reader = new FileReader();
+			
+            reader.addEventListener("load", () => {
+				
+                localStorage.setItem("recent-image", reader.result);
+            });
+
+            reader.readAsDataURL(this.files[0]);
+        });
+
+        document.addEventListener("DOMContentLoaded", () => {
+            var recentImageDataUrl = localStorage.getItem("recent-image")
+
+            if (recentImageDataUrl) {
+                document.querySelector("#imgPreview").setAttribute("src", recentImageDataUrl)
+            }
+
+        });
+
+    </script>
+
+ 
+</body>
+</html>
+© 2021 GitHub, Inc.

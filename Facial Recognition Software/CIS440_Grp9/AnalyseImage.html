@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Analyze Image</title>
+</head>
+<link rel="stylesheet" href="UploadCSS.css">
+<body>
+	<h1>AWS Rekognition</h1>
+	<img id="imgPreview" src="" alt="Preview">
+	<br>
+	<a href="UploadImage.html" class="redirecting">Click here to redirect to the upload image page</a>	
+	<script>
+	 
+
+	 document.addEventListener("DOMContentLoaded", () => {
+				const recentImageDataUrl = localStorage.getItem("recent-image")
+
+				if (recentImageDataUrl) {
+					document.querySelector("#imgPreview").setAttribute("src", recentImageDataUrl)
+				}
+			});
+
+	/*AWS.config.update({
+		accessKeyId: 'FSDGAS' ,
+		secretAccessKey: 'ffsdgs' ,
+		region: 'us-east-1'
+	});
+	//input parameters
+	var params  = {
+		Image: {
+			S3OBject: {
+				Bucket: 'testing',
+				Name: "imgPreview"
+			}
+		},
+		MaxLabels: 5,
+		MinConfidence: 80
+	};
+	//Call AWS Rekognition Class
+	const rekognition = new AWS.Rekogntion();
+	//Detect labels
+	rekognition.detectLabels(params, function(err, data) {
+		if (err) console.log(err, err.stack);
+		else   console.log(data);
+	});*/
+
+	</script> 
+</body>
+</html>
